@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
+use App\Models\Eventos;
 use Illuminate\Http\Request;
 
-class TeachersController extends Controller
+class EventosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class TeachersController extends Controller
      */
     public function index()
     {
-        $data = Teacher::all();
-        return view("Teachers.index",['data'=>$data]);
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class TeachersController extends Controller
      */
     public function create()
     {
-        return view("Teachers.create");
+        //
     }
 
     /**
@@ -36,36 +35,27 @@ class TeachersController extends Controller
      */
     public function store(Request $request)
     {
-        $exists = Teacher::where('name','=', $request->name)->exists();
-        if(!$exists) {
-            $request->img->store('teachers','public');
-            Teacher::create([
-                'name' => $request->name,
-                'area' => $request->area,
-                'lattes' => $request->lattes,
-                'img' => $request->img->hashName(),
-            ]);
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show(Eventos $eventos)
     {
-        // return view("Teacher",['data'=>$data->$id])
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit(Eventos $eventos)
     {
         //
     }
@@ -74,10 +64,10 @@ class TeachersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, Eventos $eventos)
     {
         //
     }
@@ -85,10 +75,10 @@ class TeachersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy(Eventos $eventos)
     {
         //
     }

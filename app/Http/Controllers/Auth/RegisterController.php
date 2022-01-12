@@ -50,10 +50,24 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'nome' => ['required', 'string', 'max:255'],
+            'area' => ['required', 'string', 'max:255'],
+            'lattes' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
+
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        $errors = $validator->errors();
+    
+        $response = response()->json([
+            'message' => 'Invalid data send',
+            'details' => $errors->messages(),
+        ], 422);
+    
+        throw new HttpResponseException($response);
     }
 
     /**
@@ -64,9 +78,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $acesso = 0;
+        if($data->acesso){
+            $acesso = $data->acesso;
+        }
         return User::create([
-            'name' => $data['name'],
+            'nome' => $data['nome'],
             'email' => $data['email'],
+            'area' => $data['area'],
+            'lattes' => $data['lattes'],
+            'acesso' => $acesso,
             'password' => Hash::make($data['password']),
         ]);
     }

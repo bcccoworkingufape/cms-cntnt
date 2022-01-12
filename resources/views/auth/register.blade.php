@@ -40,6 +40,34 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="area" class="col-md-4 col-form-label text-md-right">{{ __('Area') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="area" type="area" class="form-control @error('area') is-invalid @enderror" name="area" value="{{ old('area') }}" required autocomplete="area">
+
+                                @error('area')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lattes" class="col-md-4 col-form-label text-md-right">{{ __('Lattes') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="lattes" type="lattes" class="form-control @error('lattes') is-invalid @enderror" name="lattes" value="{{ old('lattes') }}" required autocomplete="lattes">
+
+                                @error('lattes')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
