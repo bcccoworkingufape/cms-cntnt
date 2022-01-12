@@ -79,8 +79,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $acesso = 0;
-        if($data->acesso){
-            $acesso = $data->acesso;
+        if(isset($data['acesso'])){
+            $acesso = $data['acesso'];
         }
         return User::create([
             'nome' => $data['nome'],
