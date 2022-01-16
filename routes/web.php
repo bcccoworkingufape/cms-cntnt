@@ -19,7 +19,11 @@ Route::get('/', function () {
 });
 
 Auth::routes(['register' => true]);
-Route::resource("users",App\Http\Controllers\UserController::class);
 
+Route::resource("users",App\Http\Controllers\UserController::class,['except'=>['create','store']]);
+Route::resource("eventos",App\Http\Controllers\EventosController::class);
+Route::resource("noticias",App\Http\Controllers\NoticiasController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
