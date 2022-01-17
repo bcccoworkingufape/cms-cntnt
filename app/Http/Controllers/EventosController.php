@@ -93,9 +93,22 @@ class EventosController extends Controller
      * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evento $eventos)
+    public function update(Request $request, Evento $evento)
     {
-        //TODO
+        try{
+            $request->validateWithBag('evento',[
+                'titulo' => ['required','string'],
+                'data' => ['required','date'],
+                'descricao' => ['required', 'string'],
+            ]);
+
+            $evento->update(['titulo'=>$request->titulo]);
+            $evento->update(['data'=>$request->data]);
+            $evento->update(['descricao'=>$request->descricao]);
+            return view('Eventos.show')->with('evento',$evento);
+        }catch(Exception $e){
+
+        }
     }
 
     /**
