@@ -66,9 +66,9 @@ class UserController extends Controller
             $user->update(['email'=>$request->input('email')]);
             $user->update(['password'=>Hash::make($request->input('nome'))]);
             return view('Users.show')->with('user',$user);
-            
+
         }catch(Exception $e){
-            
+
         }
     }
 
@@ -83,6 +83,6 @@ class UserController extends Controller
         if($user = User::find($id)){
             $user->delete();
         }
-        return redirect()->route('home');
+        return redirect()->route('users.index');
     }
 }

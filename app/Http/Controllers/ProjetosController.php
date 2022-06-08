@@ -67,9 +67,10 @@ class ProjetosController extends Controller
      * @param  \App\Models\Projeto  $projeto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Projeto $projeto)
+    public function edit($id)
     {
-        //
+        $data = Projeto::find($id);
+        return view('Projetos.edit',['data'=>$data]);
     }
 
     /**
@@ -79,9 +80,28 @@ class ProjetosController extends Controller
      * @param  \App\Models\Projeto  $projeto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Projeto $projeto)
+    public function update(Request $request, $id)
     {
-        //
+        $projeto = Projeto::find($id);
+        try{
+            $request->validateWithBag('projeto',[
+                'titulo' => ['required', 'string', 'max:255'],
+                'tipo' => ['required', 'string', 'max:255'],
+                'area' => ['required', 'string', 'max:255'],
+                'descricao' => ['required', 'string', 'max:255'],
+                'link' => ['required', 'string', 'max:255'],
+            ]);
+            $projeto->update(['titulo'=>$request->input('titulo')]);
+            $projeto->update(['tipo'=>$request->input('tipo')]);
+            $projeto->update(['area'=>$request->input('area')]);
+            $projeto->update(['descricao'=>$request->input('descricao')]);
+            $projeto->update(['area'=>$request->input('area')]);
+            $projeto->update(['link'=>$request->input('link')]);
+            return view('Projetos.show')->with('projeto',$projeto);
+
+        }catch(Exception $e){
+
+        }
     }
 
     /**
@@ -90,8 +110,11 @@ class ProjetosController extends Controller
      * @param  \App\Models\Projeto  $projeto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Projeto $projeto)
+    public function destroy($id)
     {
-        //
+        if($projeto = Projeto::find($id)){
+            $projeto->delete();
+        }
+        return redirect()->route('projetos.index');
     }
 }
