@@ -49,7 +49,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $teste =  Validator::make($data, [
             'nome' => ['required', 'string', 'max:255'],
             'area' => ['required', 'string', 'max:255'],
             'lattes' => ['required', 'string', 'max:255'],
@@ -57,16 +57,18 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8'],
         ]);
 
+        return $teste;
     }
+
     protected function failedValidation(Validator $validator)
     {
         $errors = $validator->errors();
-    
+
         $response = response()->json([
             'message' => 'Invalid data send',
             'details' => $errors->messages(),
         ], 422);
-    
+
         throw new HttpResponseException($response);
     }
 
