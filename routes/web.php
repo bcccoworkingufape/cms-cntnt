@@ -27,7 +27,3 @@ Route::resource("noticias",App\Http\Controllers\NoticiasController::class);
 Route::resource("projetos",App\Http\Controllers\ProjetosController::class,['except'=>['create','store']]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
