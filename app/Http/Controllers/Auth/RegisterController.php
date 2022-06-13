@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,15 +50,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $teste =  Validator::make($data, [
+        return Validator::make($data, [
             'nome' => ['required', 'string', 'max:255'],
             'area' => ['required', 'string', 'max:255'],
             'lattes' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-
-        return $teste;
     }
 
     protected function failedValidation(Validator $validator)
@@ -84,6 +83,7 @@ class RegisterController extends Controller
         if(isset($data['acesso'])){
             $acesso = $data['acesso'];
         }
+
         return User::create([
             'nome' => $data['nome'],
             'email' => $data['email'],
