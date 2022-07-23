@@ -11,7 +11,7 @@ class Documento extends Model
 
     protected $fillable = [
         'titulo',
-        'link',
+        'path',
         'categoria',
         'userID',
     ];
