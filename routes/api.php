@@ -21,3 +21,4 @@ Route::resource("users",App\Http\Controllers\Api\UserApiController::class,['exce
 Route::resource("eventos",App\Http\Controllers\Api\EventosApiController::class,['except'=>['create','edit']]);
 Route::resource("noticias",App\Http\Controllers\Api\NoticiasApiController::class,['except'=>['create','edit']]);
 Route::resource("documentos", App\Http\Controllers\Api\DocumentosApiController::class, ['except'=>['create', 'edit', 'update', 'store', 'destroy']]);
+Route::resource("projetos", App\Http\Controllers\Api\ProjetosApiController::class, ['except'=>['create', 'edit', 'update', 'store', 'destroy']]);
