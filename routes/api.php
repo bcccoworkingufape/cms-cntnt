@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource("users",App\Http\Controllers\Api\UserApiController::class,['except'=>['create','store','edit']]);
 Route::resource("eventos",App\Http\Controllers\Api\EventosApiController::class,['except'=>['create','edit']]);
 Route::resource("noticias",App\Http\Controllers\Api\NoticiasApiController::class,['except'=>['create','edit']]);
+Route::resource("documentos", App\Http\Controllers\Api\DocumentosApiController::class, ['except'=>['create', 'edit', 'update', 'store', 'destroy']]);
