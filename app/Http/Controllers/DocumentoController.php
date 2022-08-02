@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documento;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentoController extends Controller
 {
@@ -41,12 +42,21 @@ class DocumentoController extends Controller
         
         if(!$exists)
         {
-            Documento::create([
-                'titulo' => $nomeDocumento,
-                'path' => $request->file('documento')->store('documentos'),
-                'categoria' => $request->categoria,
-                'userID' => auth()->user()->id
-            ]);
+            // Documento::create([
+            //     'titulo' => $nomeDocumento,
+            //     'path' => $request->file('documento')->store('documentos'),
+            //     'categoria' => $request->categoria,
+            //     'userID' => auth()->user()->id
+            // ]);
+            
+            $documento = new Documento();
+            $documento->titulo = $nomeDocumento;
+            $documento->path = $request->file('documento')->store('documentos');
+            $documento->categoria = $request->categoria;
+            $documento->userID = auth()->user()->id;
+            $documento->save();
+
+            $documento->update(['url' => url("storage/" . $documento->path . "/" . $documento->nome)]);
         }
 
         return view("Documentos.index", ['data'=> Documento::all()]);
