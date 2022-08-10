@@ -16,9 +16,10 @@ class CreateDocumentosTable extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('link');
+            $table->string('path');
             $table->integer('categoria');
             $table->integer('userID')->unsigned();
+            $table->string('url')->nullable();
             $table->foreign('userID')->references('id')->on('users');
             $table->timestamps();
         });

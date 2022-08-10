@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documento;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentoController extends Controller
 {
@@ -36,16 +37,29 @@ class DocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        $exists = Documento::where('titulo','=', $request->titulo)->exists();
-        if(!$exists) {
-            $request->img->store('teachers','public');
-            Documento::create([
-                'titulo' => $request->titulo,
-                'link' => $request->link,
-                'categoria' => $request->categoria,
+        $nomeDocumento = $request->file('documento')->getClientOriginalName();
+        $exists = Documento::where('titulo', '=', $nomeDocumento)->exists();
+        
+        if(!$exists)
+        {
+            // Documento::create([
+            //     'titulo' => $nomeDocumento,
+            //     'path' => $request->file('documento')->store('documentos'),
+            //     'categoria' => $request->categoria,
+            //     'userID' => auth()->user()->id
+            // ]);
+            
+            $documento = new Documento();
+            $documento->titulo = $nomeDocumento;
+            $documento->path = $request->file('documento')->store('documentos');
+            $documento->categoria = $request->categoria;
+            $documento->userID = auth()->user()->id;
+            $documento->save();
 
-            ]);
+            $documento->update(['url' => url("storage/" . $documento->path . "/" . $documento->nome)]);
         }
+
+        return view("Documentos.index", ['data'=> Documento::all()]);
     }
 
     /**
@@ -88,8 +102,15 @@ class DocumentoController extends Controller
      * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Documento $documento)
+    public function delete(Documento $documento)
     {
-        //
+        Documento::where('id', '=', $documento->id)->delete();
+
+        return view("Documentos.index", ['data'=> Documento::all()]);
+    }
+
+    public function download(Documento $documento)
+    {
+        return response()->download(public_path('storage/' . $documento->path), $documento->titulo);
     }
 }
