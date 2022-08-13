@@ -19,7 +19,7 @@ class DocumentoFactory extends Factory
         $users = User::all()->pluck('id')->toArray();
         return [
             'titulo'=> $this->faker->words($nb=5,$asText=true),
-            'link'=> $this->faker->url(),
+            'path'=> $this->faker->url(),
             'categoria'=> $this->faker->numberBetween($int1 = 0, $int2 = 2),
             'userID'=> $this->faker->randomElement($users)
         ];
