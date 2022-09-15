@@ -14,6 +14,7 @@ class Documento extends Model
         'path',
         'categoria',
         'userID',
+        'url'
     ];
 
     public function dono(){
