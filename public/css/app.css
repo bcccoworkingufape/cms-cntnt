@@ -10019,3 +10019,8 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}

@@ -13,11 +13,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
+    </div>
+    <div class="nav">
+        <a href="{{route('users.index')}}">Users</a>
+        <a href="{{route('noticias.index')}}">Notícias</a>
+        <a href="{{route('eventos.index')}}">Eventos</a>
+        <a href="{{route('projetos.index')}}">Projetos</a>
+        <a href="{{route('documentos.index')}}">Documentos</a>
     </div>
 </div>
 @endsection

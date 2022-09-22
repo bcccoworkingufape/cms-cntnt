@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**
@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Url::forceScheme('https');
+        if($this->app->isLocal()){
+            //
+        }else{
+            Url::forceScheme('https');
+        }
     }
 }
