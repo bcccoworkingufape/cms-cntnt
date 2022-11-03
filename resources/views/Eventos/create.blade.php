@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('script')
+new FroalaEditor('textarea#area')
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

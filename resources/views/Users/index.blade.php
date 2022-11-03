@@ -26,12 +26,12 @@
                                     <td>{{$users->email}}</td>
                                     <td>{{$users->created_at}}</td>
                                     <td>
-                                        <div>
+                                        <div class="formFix">
                                             <a href="{{route('users.edit',['user'=>$users->id])}}" class="btn btn-secondary btn-sm" type="button" name="edit" value="{{$users}}" onclick="javascript:void(0)">Editar</a>
                                             <form method="POST" action="{{route('users.destroy',['user'=>$users->id])}}">
                                                 @method("DELETE")
                                                 @csrf
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-sm btn-danger">
                                                     {{ __('Deletar') }}
                                                 </button>
                                             </form>

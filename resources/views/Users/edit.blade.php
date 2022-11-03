@@ -8,7 +8,8 @@
                 <div class="card-header">{{ __('Edit User') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update',['user'=>$data->id]) }}">
+                    <form class="formFix"
+                    method="POST" action="{{ route('users.update',['user'=>$data->id]) }}">
                         @csrf
                         @method("PUT")
 
@@ -16,7 +17,7 @@
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nome" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') }}" required autocomplete="nome" autofocus>
+                                <input id="nome" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome',$data->nome) }}" required autocomplete="nome" autofocus>
 
                                 @error('nome')
                                     <span class="invalid-feedback" role="alert">
@@ -30,7 +31,7 @@
                             <label for="area" class="col-md-4 col-form-label text-md-right">{{ __('Area') }}</label>
 
                             <div class="col-md-6">
-                                <input id="area" type="text" class="form-control @error('area') is-invalid @enderror" name="area" value="{{ old('area') }}" required autocomplete="area">
+                                <input id="area" type="text" class="form-control @error('area') is-invalid @enderror" name="area" value="{{ old('area',$data->area) }}" required autocomplete="area">
 
                                 @error('area')
                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +45,7 @@
                             <label for="lattes" class="col-md-4 col-form-label text-md-right">{{ __('Lattes') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lattes" type="text" class="form-control @error('lattes') is-invalid @enderror" name="lattes" value="{{ old('lattes') }}" required autocomplete="lattes">
+                                <input id="lattes" type="text" class="form-control @error('lattes') is-invalid @enderror" name="lattes" value="{{ old('lattes',$data->lattes) }}" required autocomplete="lattes">
 
                                 @error('lattes')
                                     <span class="invalid-feedback" role="alert">
@@ -58,7 +59,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email',$data->email) }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

@@ -17,7 +17,7 @@ class CreateNoticiasTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descricao');
-            $table->string('link');
+            // $table->string('link');
             $table->string('img');
             $table->integer('userID')->unsigned();
             $table->foreign('userID')->references('id')->on('users');
