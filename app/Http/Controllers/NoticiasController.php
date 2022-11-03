@@ -16,7 +16,7 @@ class NoticiasController extends Controller
     public function index()
     {
         $data = Noticia::all();
-        return view("Noticias.index",['data'=>$data]);   
+        return view("Noticias.index",['data'=>$data]);
     }
 
     /**
@@ -42,8 +42,6 @@ class NoticiasController extends Controller
             $request->validateWithBag('noticia',[
                 'titulo' => ['required','string'],
                 'descricao' => ['required', 'string'],
-                'link' => ['required', 'string'],
-                'img' => ['required', 'string'],
             ]);
 
             $noticia = new Noticia();
@@ -54,13 +52,14 @@ class NoticiasController extends Controller
                 $noticia->userID = 3;
             }
             $noticia->descricao = $request->descricao;
-            $noticia->link = $request->link;
             $noticia->img = $request->img;
             $noticia->save();
             return view('Noticias.show')->with('noticia',$noticia);
 
         }catch(Exception $exception){
-            return redirect(route(noticias.create))->withErros($exception->getValidator())->withInput();
+            dd($exception);
+            die();
+            // return redirect(route(noticias.create))->withErros($exception->getValidator())->withInput();
         }
     }
 

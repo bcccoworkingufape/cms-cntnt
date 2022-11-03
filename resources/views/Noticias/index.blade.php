@@ -4,8 +4,11 @@
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-                <div class="card-header">Noticias</div>
+                <div class="card-header headerFix">Noticias
+                    <a href="{{route('noticias.create')}}" class="btn btn-primary btn-sm" type="button" name="edit" onclick="javascript:void(0)">Cadastrar Nova Notícia</a>
+                </div>
                 <div class="card-body">
+
                     <table class="table table-sm table-hover">
                         <thead>
                             <tr>
@@ -23,12 +26,12 @@
                                     <td>{{$noticias->link}}</td>
                                     <td><img src = {{$noticias->img}} width = 50px, height = 50px></td>
                                     <td>
-                                        <div>
+                                        <div class="formFix">
                                             <a href="{{route('noticias.edit',['noticia'=>$noticias->id])}}" class="btn btn-secondary btn-sm" type="button" name="edit" value="{{$noticias}}" onclick="javascript:void(0)">Editar</a>
                                             <form method="POST" action="{{route('noticias.destroy',['noticia'=>$noticias->id])}}">
                                                 @method("DELETE")
                                                 @csrf
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-danger btn-sm">
                                                     {{ __('Deletar') }}
                                                 </button>
                                             </form>
