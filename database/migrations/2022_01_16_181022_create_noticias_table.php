@@ -18,7 +18,7 @@ class CreateNoticiasTable extends Migration
             $table->string('titulo');
             $table->string('descricao');
             // $table->string('link');
-            $table->string('img');
+            $table->longText('img')->nullable();
             $table->bigInteger('userID')->unsigned();
             $table->foreign('userID')->references('id')->on('users');
             $table->timestamps();
