@@ -19,7 +19,7 @@ class CreateNoticiasTable extends Migration
             $table->string('descricao');
             // $table->string('link');
             $table->string('img');
-            $table->integer('userID')->unsigned();
+            $table->bigInteger('userID')->unsigned();
             $table->foreign('userID')->references('id')->on('users');
             $table->timestamps();
         });

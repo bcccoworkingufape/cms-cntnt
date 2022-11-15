@@ -18,7 +18,7 @@ class CreateDocumentosTable extends Migration
             $table->string('titulo');
             $table->string('path');
             $table->integer('categoria');
-            $table->integer('userID')->unsigned();
+            $table->bigInteger('userID')->unsigned();
             $table->string('url')->nullable();
             $table->foreign('userID')->references('id')->on('users');
             $table->timestamps();
