@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Noticia;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,18 +47,14 @@ class NoticiasController extends Controller
 
             $noticia = new Noticia();
             $noticia->titulo = $request->titulo;
-            if(isset($userID)){
-                $noticia->userID = $userID;
-            }else{
-                $noticia->userID = 3;
-            }
+            $noticia->userID = $userID;
             $noticia->descricao = $request->descricao;
-            $noticia->img = $request->img;
+            $noticia->img = base64_encode(file_get_contents($request->file('img')));
             $noticia->save();
-            return view('Noticias.show')->with('noticia',$noticia);
+
+            return view('Noticias.show')->with('noticia', $noticia);
 
         }catch(Exception $exception){
-            dd($exception);
             die();
             // return redirect(route(noticias.create))->withErros($exception->getValidator())->withInput();
         }
