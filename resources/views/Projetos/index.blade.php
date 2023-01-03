@@ -4,9 +4,11 @@
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-                <div class="card-header">Projetos</div>
+                <div class="card-header headerFix">Projetos
+                    {{-- <a href="{{route('projetos.create')}}" class="btn btn-primary btn-sm" type="button" name="edit" onclick="javascript:void(0)">Cadastrar Novo Projeto</a> --}}
+                </div>
                 <div class="card-body">
-                    <table class="table table-sm table-hover">
+                    <table class="table table-sm table-hover indexNews">
                         <thead>
                             <tr>
                             <th scope="col">Titulo</th>
@@ -15,7 +17,6 @@
                             <th scope="col">Descricao</th>
                             <th scope="col">Link</th>
                             <th scope="col">Imagem</th>
-                            <th scope="col">Opções</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,12 +29,12 @@
                                     <td>{{$projetos->link}}</td>
                                     <td><img src = {{$projetos->img}} width = 50px, height = 50px></td>
                                     <td>
-                                        <div>
+                                        <div class="formFix">
                                             <a href="{{route('projetos.edit',['projeto'=>$projetos->id])}}" class="btn btn-secondary btn-sm" type="button" name="edit" value="{{$projetos}}" onclick="javascript:void(0)">Editar</a>
                                             <form method="POST" action="{{route('projetos.destroy',['projeto'=>$projetos->id])}}">
                                                 @method("DELETE")
                                                 @csrf
-                                                <button type="submit" class="btn btn-primary">
+                                                <button style="width:100%" type="submit" class="btn btn-danger btn-sm">
                                                     {{ __('Deletar') }}
                                                 </button>
                                             </form>

@@ -56,7 +56,7 @@ class NoticiasController extends Controller
 
         }catch(Exception $exception){
             die();
-            // return redirect(route(noticias.create))->withErros($exception->getValidator())->withInput();
+            // return redirect(route(noticias.create))->withErrors($exception->getValidator())->withInput();
         }
     }
 
@@ -97,19 +97,17 @@ class NoticiasController extends Controller
             $request->validateWithBag('noticia',[
                 'titulo' => ['required','string'],
                 'descricao' => ['required', 'string'],
-                'link' => ['required', 'string'],
                 'img' => ['required', 'string'],
             ]);
 
             $noticia->update(['titulo'=>$request->titulo]);
             $noticia->update(['descricao'=>$request->descricao]);
-            $noticia->update(['link'=>$request->link]);
             $noticia->update(['img'=>$request->img]);
             $noticia->descricao = $request->descricao;
             return view('Noticias.show')->with('noticia',$noticia);
 
         }catch(Exception $exception){
-            return redirect(route(noticias.create))->withErros($exception->getValidator())->withInput();
+            return redirect(route('noticias.edit',['noticia'=>$noticia->id]))->withErrors($exception->errors())->withInput();
         }
     }
 

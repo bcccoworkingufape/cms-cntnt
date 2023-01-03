@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+
 class UserFactory extends Factory
 {
     /**
@@ -21,7 +22,6 @@ class UserFactory extends Factory
             'area' => $this->faker->jobTitle(),
             'lattes'=> $this->faker->url(),
             'acesso' => $this->faker->randomElement($array=array(0,1,2)),
-            'lattes'=> $this->faker->url(),
             'img'=> $this->faker->url(),//set file later
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

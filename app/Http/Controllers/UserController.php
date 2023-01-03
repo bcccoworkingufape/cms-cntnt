@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
 use Hash;
+use illuminate\Database\Eloquent\SoftDeletes;
 class UserController extends Controller
 {
     /**
@@ -83,8 +84,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $date = $today = date("Y-m-d H:i:s.000",time());
         if($user = User::find($id)){
-            $user->delete();
+            \DB::table('users')->where('id', $id)->update(['deleted_at' => $date]);
+            // $user->delete();
         }
         return redirect()->route('users.index');
     }
