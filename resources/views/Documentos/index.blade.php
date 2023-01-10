@@ -19,10 +19,10 @@
                                         {{$documento->titulo}}
                                     </td>
                                     <td>
-                                        <a href="{{route('documentos.download', $documento)}}">Download</a>
+                                        <a class="btn btn-secondary btn-sm" type="button" href="{{route('documentos.download', $documento)}}">Download</a>
                                     </td>
                                     <td>
-                                        <a href="{{route('documentos.delete', $documento)}}">Excluir</a>
+                                        <a class="btn btn-danger btn-sm" href="{{route('documentos.delete', $documento)}}">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach

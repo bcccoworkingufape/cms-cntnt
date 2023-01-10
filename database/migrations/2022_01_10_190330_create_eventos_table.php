@@ -18,7 +18,7 @@ class CreateEventosTable extends Migration
             $table->string('titulo');
             $table->date('data');
             $table->string('descricao');
-            $table->integer('userID')->unsigned();
+            $table->bigInteger('userID')->unsigned();
             $table->foreign('userID')->references('id')->on('users');
             $table->timestamps();
         });

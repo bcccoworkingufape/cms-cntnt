@@ -21855,3 +21855,13 @@ textarea.form-control-lg {
     display: flex;
     max-width: 150px;
 }
+.table.indexNews td{
+
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.table.indexNews .actions{
+    max-width: 15px;
+}

@@ -8,13 +8,11 @@
                     <a href="{{route('noticias.create')}}" class="btn btn-primary btn-sm" type="button" name="edit" onclick="javascript:void(0)">Cadastrar Nova Notícia</a>
                 </div>
                 <div class="card-body">
-
-                    <table class="table table-sm table-hover">
+                    <table class="table table-sm table-hover indexNews">
                         <thead>
                             <tr>
                             <th scope="col">Titulo</th>
                             <th scope="col">Descricao</th>
-                            <th scope="col">Link</th>
                             <th scope="col">Imagem</th>
                             </tr>
                         </thead>
@@ -23,9 +21,8 @@
                                 <tr>
                                     <td>{{$noticias->titulo}}</td>
                                     <td>{{$noticias->descricao}}</td>
-                                    <td>{{$noticias->link}}</td>
                                     <td><img src = {{$noticias->img}} width = 50px, height = 50px></td>
-                                    <td>
+                                    <td class="actions">
                                         <div class="formFix">
                                             <a href="{{route('noticias.edit',['noticia'=>$noticias->id])}}" class="btn btn-secondary btn-sm" type="button" name="edit" value="{{$noticias}}" onclick="javascript:void(0)">Editar</a>
                                             <form method="POST" action="{{route('noticias.destroy',['noticia'=>$noticias->id])}}">

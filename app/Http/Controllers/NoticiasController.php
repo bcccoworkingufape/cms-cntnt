@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Noticia;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,20 +47,16 @@ class NoticiasController extends Controller
 
             $noticia = new Noticia();
             $noticia->titulo = $request->titulo;
-            if(isset($userID)){
-                $noticia->userID = $userID;
-            }else{
-                $noticia->userID = 3;
-            }
+            $noticia->userID = $userID;
             $noticia->descricao = $request->descricao;
-            $noticia->img = $request->img;
+            $noticia->img = base64_encode(file_get_contents($request->file('img')));
             $noticia->save();
-            return view('Noticias.show')->with('noticia',$noticia);
+
+            return view('Noticias.show')->with('noticia', $noticia);
 
         }catch(Exception $exception){
-            dd($exception);
             die();
-            // return redirect(route(noticias.create))->withErros($exception->getValidator())->withInput();
+            // return redirect(route(noticias.create))->withErrors($exception->getValidator())->withInput();
         }
     }
 
@@ -100,19 +97,17 @@ class NoticiasController extends Controller
             $request->validateWithBag('noticia',[
                 'titulo' => ['required','string'],
                 'descricao' => ['required', 'string'],
-                'link' => ['required', 'string'],
                 'img' => ['required', 'string'],
             ]);
 
             $noticia->update(['titulo'=>$request->titulo]);
             $noticia->update(['descricao'=>$request->descricao]);
-            $noticia->update(['link'=>$request->link]);
             $noticia->update(['img'=>$request->img]);
             $noticia->descricao = $request->descricao;
             return view('Noticias.show')->with('noticia',$noticia);
 
         }catch(Exception $exception){
-            return redirect(route(noticias.create))->withErros($exception->getValidator())->withInput();
+            return redirect(route('noticias.edit',['noticia'=>$noticia->id]))->withErrors($exception->errors())->withInput();
         }
     }
 

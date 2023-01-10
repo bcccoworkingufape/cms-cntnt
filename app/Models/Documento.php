@@ -18,6 +18,6 @@ class Documento extends Model
     ];
 
     public function dono(){
-        return $this->belongsTo('App\Models\User','userID');
+        return $this->belongsTo('App\Models\User','userID')->withTrashed();
     }
 }

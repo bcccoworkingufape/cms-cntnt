@@ -51,7 +51,7 @@ class DocumentoController extends Controller
             
             $documento = new Documento();
             $documento->titulo = $nomeDocumento;
-            $documento->path = $request->file('documento')->store('documentos');
+            $documento->path = $request->file('documento')->store('documentos', 'public');
             $documento->categoria = $request->categoria;
             $documento->userID = auth()->user()->id;
             $documento->save();

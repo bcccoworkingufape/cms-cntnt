@@ -16,7 +16,7 @@ class EventosController extends Controller
     public function index()
     {
         $data = Evento::all();
-        return view("Eventos.index",['data'=>$data]);    
+        return view("Eventos.index",['data'=>$data]);
     }
 
     /**
@@ -26,7 +26,7 @@ class EventosController extends Controller
      */
     public function create()
     {
-        return view("Eventos.create");    
+        return view("Eventos.create");
     }
 
     /**
@@ -58,7 +58,7 @@ class EventosController extends Controller
             return view('Eventos.show')->with('evento',$evento);
 
         }catch(Exception $exception){
-            return redirect(route(eventos.create))->withErros($exception->getValidator())->withInput();
+            return redirect(route(eventos.create))->withErrors($exception->getValidator())->withInput();
         }
     }
 
