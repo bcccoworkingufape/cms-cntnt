@@ -55,8 +55,7 @@ class NoticiasController extends Controller
             return view('Noticias.show')->with('noticia', $noticia);
 
         }catch(Exception $exception){
-            die();
-            // return redirect(route(noticias.create))->withErrors($exception->getValidator())->withInput();
+            return redirect(route(noticias.create))->withErrors($exception->getValidator())->withInput();
         }
     }
 

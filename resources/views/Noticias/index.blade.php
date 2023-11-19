@@ -21,7 +21,13 @@
                                 <tr>
                                     <td>{{$noticias->titulo}}</td>
                                     <td>{{$noticias->descricao}}</td>
-                                    <td><img src = {{$noticias->img}} width = 50px, height = 50px></td>
+                                    <td>
+                                        @if (filter_var($noticias->img, FILTER_VALIDATE_URL))
+                                            <img src="{{ $noticias->img }}" alt="Imagem" width="50px" height="50px">
+                                        @else
+                                            <img src="data:image/jpeg;base64,{{ $noticias->img }}" alt="Imagem" width="50px" height="50px">
+                                        @endif    
+                                    </td>
                                     <td class="actions">
                                         <div class="formFix">
                                             <a href="{{route('noticias.edit',['noticia'=>$noticias->id])}}" class="btn btn-secondary btn-sm" type="button" name="edit" value="{{$noticias}}" onclick="javascript:void(0)">Editar</a>
