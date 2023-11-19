@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\MessageBag;
 use App\Models\Noticia;
 use Exception;
 use Illuminate\Http\Request;
@@ -96,18 +97,22 @@ class NoticiasController extends Controller
             $request->validateWithBag('noticia',[
                 'titulo' => ['required','string'],
                 'descricao' => ['required', 'string'],
-                'img' => ['required', 'string'],
             ]);
 
             $noticia->update(['titulo'=>$request->titulo]);
             $noticia->update(['descricao'=>$request->descricao]);
-            $noticia->update(['img'=>$request->img]);
+            if($request->img){
+                $noticia->update(['img'=>$request->img]);
+            }
             $noticia->descricao = $request->descricao;
             return view('Noticias.show')->with('noticia',$noticia);
 
         }catch(Exception $exception){
-            return redirect(route('noticias.edit',['noticia'=>$noticia->id]))->withErrors($exception->errors())->withInput();
-        }
+            $errors = new MessageBag([$exception->getMessage()]);
+
+    return redirect(route('noticias.edit', ['noticia' => $noticia->id]))
+        ->withErrors($errors)
+        ->withInput();       }
     }
 
     /**

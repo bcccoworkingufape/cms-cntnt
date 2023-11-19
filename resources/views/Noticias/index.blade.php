@@ -20,7 +20,7 @@
                             @foreach($data as $noticias)
                                 <tr>
                                     <td>{{$noticias->titulo}}</td>
-                                    <td>{{$noticias->descricao}}</td>
+                                    <td>{!!$noticias->descricao!!}</td>
                                     <td>
                                         @if (filter_var($noticias->img, FILTER_VALIDATE_URL))
                                             <img src="{{ $noticias->img }}" alt="Imagem" width="50px" height="50px">
