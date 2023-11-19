@@ -122,6 +122,6 @@ class NoticiasController extends Controller
         if($noticia = Noticia::find($id)){
             $noticia->delete();
         }
-        return redirect()->route('home');
+        return redirect()->route('noticias.index');
     }
 }

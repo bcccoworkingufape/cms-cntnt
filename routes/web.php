@@ -31,4 +31,4 @@ Route::get("/documentos/delete/{documento}", [App\Http\Controllers\DocumentoCont
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('ckeditor/upload', 'CKEditorController@upload')->name('ckeditor.image-upload');
+// Route::post('ckeditor/upload', 'CKEditorController@upload')->name('ckeditor.image-upload');
